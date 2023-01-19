@@ -71,6 +71,13 @@ public class Pokemon {
         return pokemonFromFile;    
     }
 
+    public void printInformation() {
+        System.out.println("Name: " + name);
+        System.out.format("Max HP: %d\n", maxHp);
+        System.out.println("Weakness: " + weakness.toString());
+        System.out.println("Strength: " + strength.toString());
+    }
+
     public String getName() {
         return name;
     }

@@ -7,7 +7,7 @@ public class TieResult extends Result {
 
     @Override
     public void show() {
-        System.out.format("The game ended as a tie after %i turns", getTurnAmount());        
+        System.out.format("The game ended as a tie after %d turns", getTurnAmount());        
     }
     
 }
