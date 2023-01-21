@@ -1,7 +1,7 @@
 package ccpokemon;
 
-public class TieResult extends Result {
-    public TieResult(int turnAmount) {
+public class Tie extends Result {
+    public Tie(int turnAmount) {
         super(turnAmount);
     }
 

@@ -1,10 +1,10 @@
 package ccpokemon;
 
-public class WinResult extends Result {
+public class Win extends Result {
     private String winner;
     private int hpRemaining;
     
-    public WinResult(String winner, int hpRemaining, int turnAmount) {
+    public Win(String winner, int hpRemaining, int turnAmount) {
         super(turnAmount);
         this.winner = winner;
         this.hpRemaining = hpRemaining;

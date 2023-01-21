@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
-// a data class for Game to transfer any needed information to up a game
 public class GameSetup {
     private String pokemonA;
     private String pokemonB;
@@ -22,15 +21,15 @@ public class GameSetup {
         String enemyPokemon = "";
 
         System.out.println("Welcome to the one and only Pokemon game!\n");
-        if (ownPokemon.equals("")) {
-            System.out.println("You currently have no pokemon selected.");
-        } else {
-            System.out.println("You chose " + ownPokemon + " and are ready to duel!");
-        }
 
         int dialogOption = 0;
 
         while (dialogOption != 3) {
+            if (ownPokemon.equals("")) {
+                System.out.println("You currently have no pokemon selected.");
+            } else {
+                System.out.println("You chose " + ownPokemon + " and are ready to duel!");
+            }
             System.out.println("Choose what you want to do:\n" +
                     "1: Choose pokemon\n" +
                     "2: Open pokedex\n" +
@@ -55,7 +54,7 @@ public class GameSetup {
         String[] availablePokemon = getAvailablePokemon();
         for (String pokemonName : availablePokemon) {
             File pokemonFile = new File(
-                    "demo/src/main/java/ccpokemon/resources/" + pokemonName + ".poke");
+                    Pokemon.POKEMON_FILES_PATH + pokemonName + ".poke");
             try {
                 Pokemon pokemon = Pokemon.buildFromFile(pokemonFile);
                 pokemon.printInformation();
@@ -67,7 +66,7 @@ public class GameSetup {
         }
     }
 
-    public static String selectOwnPokemon(Scanner sc) {
+    private static String selectOwnPokemon(Scanner sc) {
         System.out.println("These are the available pokemon:");
         for (String pokemonName : getAvailablePokemon()) {
             System.out.println(pokemonName);
@@ -78,7 +77,7 @@ public class GameSetup {
         return sc.nextLine();
     }
 
-    public static String selectOpponentPokemon(Scanner sc) {
+    private static String selectOpponentPokemon(Scanner sc) {
         System.out.println("These are the available pokemon:");
         String[] availablePokemon = getAvailablePokemon();
         for (String pokemonName : availablePokemon) {
@@ -86,10 +85,11 @@ public class GameSetup {
         }
 
         System.out.println("Please enter name of your opponents pokemon or enter nothing for a random opponent:");
-        
-        String opponent = sc.nextLine();
+
         sc.nextLine();
-        if (opponent.equals("")) {
+        String opponent = sc.nextLine();
+
+        if (opponent.length() == 0) {
             Random rn = new Random();
             opponent = availablePokemon[rn.nextInt(availablePokemon.length)];
         }
@@ -97,7 +97,7 @@ public class GameSetup {
     }
 
     private static String[] getAvailablePokemon() {
-        File pokemonFolder = new File("demo/src/main/java/ccpokemon/resources");
+        File pokemonFolder = new File(Pokemon.POKEMON_FILES_PATH);
 
         File[] pokemonFiles = pokemonFolder.listFiles();
 

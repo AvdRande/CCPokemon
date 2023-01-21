@@ -14,6 +14,8 @@ public class Pokemon {
     // each pokemon has one strength and one weakness
     private DamageType weakness;
     private DamageType strength;
+
+    public static final String POKEMON_FILES_PATH = "demo/src/main/java/ccpokemon/resources/";
     
 
     public Pokemon() {

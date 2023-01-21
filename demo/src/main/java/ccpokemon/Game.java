@@ -12,7 +12,7 @@ public class Game {
 
     public Game(GameSetup setup) {
         File pokemonAFile = new File(
-                "demo/src/main/java/ccpokemon/resources/" + setup.getPokemonA().toLowerCase() + ".poke");
+                Pokemon.POKEMON_FILES_PATH + setup.getPokemonA().toLowerCase() + ".poke");
         try {
             this.pokemonA = Pokemon.buildFromFile(pokemonAFile);
         } catch (IOException e) {
@@ -21,7 +21,7 @@ public class Game {
         }
 
         File pokemonBFile = new File(
-                "demo/src/main/java/ccpokemon/resources/" + setup.getPokemonB().toLowerCase() + ".poke");
+                Pokemon.POKEMON_FILES_PATH + setup.getPokemonB().toLowerCase() + ".poke");
         try {
             this.pokemonB = Pokemon.buildFromFile(pokemonBFile);
         } catch (IOException e) {
@@ -48,12 +48,12 @@ public class Game {
         }
 
         if (pokemonA.isDead() && pokemonB.isDead()) {
-            return new TieResult(turn);
+            return new Tie(turn);
         } else {
             if (pokemonA.isDead()) {
-                return new WinResult(pokemonB.getName(), pokemonB.getCurHp(), turn);
+                return new Win(pokemonB.getName(), pokemonB.getCurHp(), turn);
             } else {
-                return new WinResult(pokemonA.getName(), pokemonA.getCurHp(), turn);
+                return new Win(pokemonA.getName(), pokemonA.getCurHp(), turn);
             }
         }
     }
